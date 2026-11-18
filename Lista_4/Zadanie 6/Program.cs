@@ -10,7 +10,7 @@ namespace Zadanie_6
         private Stopwatch realClock = Stopwatch.StartNew();
         private double startReal = 0;
         private double startSim = 0;
-        private double mulitplier = 1;
+        private double multiplier = 1;
         private bool paused = false;
 
         private double Current()
@@ -21,15 +21,15 @@ namespace Zadanie_6
             }
             else
             {
-                double elapsedReal = realClock.ElapsedMilliseconds - startReal;
-                return startSim + elapsedReal * mulitplier;
+                double elapsedReal = realClock.Elapsed.TotalMilliseconds - startReal;
+                return startSim + elapsedReal * multiplier;
             }
         }
 
         private void NewStart()
         {
             startSim = Current();
-            startReal = realClock.ElapsedMilliseconds;
+            startReal = realClock.Elapsed.TotalMilliseconds;
         }
 
         public long Teraz
@@ -48,7 +48,7 @@ namespace Zadanie_6
             {
                 lock (stateLock)
                 {
-                    return mulitplier;
+                    return multiplier;
                 }
             }
             set
@@ -56,7 +56,7 @@ namespace Zadanie_6
                 lock (stateLock)
                 {
                     NewStart();
-                    mulitplier = Math.Clamp(value, 1, 20);
+                    multiplier = Math.Clamp(value, 1, 20);
                 }
             }
         }

@@ -9,7 +9,6 @@ namespace Zadanie_3
         static object[] segments = new object[20];
         static int[] position = new int[10];
         static object stateLock = new object();
-        static int checks = 0;
         static int violations = 0;
         static volatile bool finished = false;
 
@@ -30,6 +29,9 @@ namespace Zadanie_3
             Monitor.Enter(segments[0]);
             try
             {
+                SetPosition(number, 0);
+                Thread.Sleep(random.Next(5, 31));
+
                 for (int next = 1; next < 20; next++)
                 {
                     if (version == 1)
@@ -68,7 +70,7 @@ namespace Zadanie_3
                 {
                     for (int k = 1; k < 10; k++)
                     {
-                        if (position[k] != -1 && position[k-1] != 20 && position[k] >= position[k - 1])
+                        if (position[k] != -1 && position[k - 1] != 20 && position[k] >= position[k - 1])
                         {
                             violations++;
                         }
@@ -77,8 +79,8 @@ namespace Zadanie_3
                 Thread.Sleep(10);
             }
         }
-               
-        
+
+
         static void Main(string[] args)
         {
             for (int i = 0; i < 20; i++)

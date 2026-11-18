@@ -12,10 +12,10 @@ namespace Zadanie_7
         static int retries = 0;
 
 
-        static void Car(object? id)
+        static void Car()
         {
             Random random = new Random();
-            while(!stop)
+            while (!stop)
             {
                 int start = random.Next(0, 5);
                 int count = random.Next(1, 5);
@@ -35,7 +35,7 @@ namespace Zadanie_7
                 }
                 else
                 {
-                    while(true)
+                    while (true)
                     {
                         int taken = 0;
                         for (int i = 0; i < count; i++)
@@ -45,7 +45,6 @@ namespace Zadanie_7
                                 break;
                             }
                             taken++;
-
                         }
                         if (taken == count)
                         {
@@ -69,7 +68,7 @@ namespace Zadanie_7
         }
         static void Main(string[] args)
         {
-            for (int i = 0; i <5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 segments[i] = new object();
             }
@@ -78,7 +77,7 @@ namespace Zadanie_7
             for (int i = 0; i < 10; i++)
             {
                 cars[i] = new Thread(Car);
-                cars[i].Start(i);
+                cars[i].Start();
             }
 
             Thread.Sleep(5000);

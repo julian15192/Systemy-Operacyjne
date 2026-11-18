@@ -17,7 +17,7 @@ namespace Zadanie_4
         {
             int d = (int)id!;
             int first = d;
-            int second = (d + 3) % 4;
+            int second = (d + 1) % 4;
             Random random = new Random();
 
             if (version == 2 && second < first)
@@ -42,7 +42,7 @@ namespace Zadanie_4
                     held[d] = first;
                     Thread.Sleep(50);
                     wanted[d] = second;
-                    if (Monitor.TryEnter(resources[second], 1000))
+                    if (Monitor.TryEnter(resources[second], 100))
                     {
                         break;
                     }

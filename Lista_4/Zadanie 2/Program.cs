@@ -8,7 +8,7 @@ namespace Zadanie_2
     {    
         static int counter = 0;
         static object lockObject = new object();
-        static int version = 2;
+        static int version = 1;
 
         static void IncreaseCounter()
         {
